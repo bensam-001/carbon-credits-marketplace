@@ -1,5 +1,9 @@
 module carbon_credit_marketplace::carbon_credit_marketplace {
-    use sui::{transfer, sui::SUI, coin::{Self, Coin}, clock::{Self, Clock}, object::{Self, UID}, balance::{Self, Balance}, tx_context::{Self, TxContext}};
+    use sui::{transfer, sui::SUI, coin::{Self, Coin},
+    clock::{Self, Clock},
+    object::{Self, UID},
+    balance::{Self, Balance},
+    tx_context::{Self, TxContext}};
     use std::option::{Option, none, some, is_some};
 
     const ERR_INVALID_BID: u64 = 1;
@@ -118,7 +122,7 @@ module carbon_credit_marketplace::carbon_credit_marketplace {
         credit.purchased = false;
         credit.dispute = false;
     }
-    
+
     // Add more funds to escrow
     public entry fun add_funds(credit: &mut CarbonCredit, amount: Coin<SUI>, ctx: &mut TxContext) {
         assert!(tx_context::sender(ctx) == credit.owner, ENotParticipant);
